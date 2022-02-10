@@ -1,10 +1,10 @@
 package com.geekbrains.cleancodeapp.view.main
 
-import com.geekbrains.cleancodeapp.model.data.AppState
-import com.geekbrains.cleancodeapp.model.data.DataModel
-import com.geekbrains.cleancodeapp.model.repository.Repository
-import com.geekbrains.cleancodeapp.model.repository.RepositoryLocal
-import com.geekbrains.cleancodeapp.viewmodel.Interactor
+import com.geekbrains.model.data.AppState
+import com.geekbrains.model.data.DataModel
+import com.geekbrains.repository.Repository
+import com.geekbrains.repository.RepositoryLocal
+import com.geekbrains.core.viewmodel.Interactor
 
 
 class MainInteractor(

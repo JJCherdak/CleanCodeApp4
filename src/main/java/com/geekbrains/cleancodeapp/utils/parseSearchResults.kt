@@ -1,9 +1,10 @@
 package com.geekbrains.cleancodeapp.utils
 
-import com.geekbrains.cleancodeapp.model.data.AppState
-import com.geekbrains.cleancodeapp.model.data.DataModel
-import com.geekbrains.cleancodeapp.model.data.Meanings
-import com.geekbrains.cleancodeapp.room.HistoryEntity
+import com.geekbrains.model.data.AppState
+import com.geekbrains.model.data.DataModel
+import com.geekbrains.model.data.Meanings
+import com.geekbrains.model.room.HistoryEntity
+
 
 fun parseOnlineSearchResults(appState: AppState): AppState {
     return AppState.Success(mapResult(appState, true))
@@ -48,8 +49,8 @@ private fun getSuccessResultData(
 private fun parseOnlineResult(dataModel: DataModel, newDataModels: ArrayList<DataModel>) {
     if (!dataModel.text.isNullOrBlank() && !dataModel.meanings.isNullOrEmpty()) {
         val newMeanings = arrayListOf<Meanings>()
-        for (meaning in dataModel.meanings) {
-            if (meaning.translation != null && !meaning.translation.translation.isNullOrBlank()) {
+        for (meaning in dataModel.meanings!!) {
+            if (meaning.translation != null && !meaning.translation!!.translation.isNullOrBlank()) {
                 newMeanings.add(Meanings(meaning.translation, meaning.imageUrl))
             }
         }

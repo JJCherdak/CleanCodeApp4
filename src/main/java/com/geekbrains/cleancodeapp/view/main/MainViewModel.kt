@@ -1,9 +1,9 @@
 package com.geekbrains.cleancodeapp.view.main
 
 import androidx.lifecycle.LiveData
-import com.geekbrains.cleancodeapp.model.data.AppState
+import com.geekbrains.model.data.AppState
 import com.geekbrains.cleancodeapp.utils.parseOnlineSearchResults
-import com.geekbrains.cleancodeapp.viewmodel.BaseViewModel
+import com.geekbrains.core.viewmodel.BaseViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext

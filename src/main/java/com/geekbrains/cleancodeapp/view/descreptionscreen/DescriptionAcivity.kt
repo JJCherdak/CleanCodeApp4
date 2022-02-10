@@ -9,8 +9,8 @@ import androidx.appcompat.app.AppCompatActivity
 import coil.ImageLoader
 import com.geekbrains.cleancodeapp.R
 import com.geekbrains.cleancodeapp.databinding.ActivityDescriptionBinding
-import com.geekbrains.cleancodeapp.utils.Ui.AlertDialogFragment
-import com.geekbrains.cleancodeapp.utils.network.isOnline
+import com.geekbrains.utils.Ui.AlertDialogFragment
+import com.geekbrains.utils.network.isOnline
 import coil.request.LoadRequest
 
 class DescriptionActivity : AppCompatActivity(){
