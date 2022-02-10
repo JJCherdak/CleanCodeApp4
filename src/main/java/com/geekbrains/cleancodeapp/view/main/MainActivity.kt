@@ -8,14 +8,14 @@ import android.view.View
 import androidx.lifecycle.Observer
 import com.geekbrains.cleancodeapp.R
 import com.geekbrains.cleancodeapp.databinding.ActivityMainBinding
-import com.geekbrains.cleancodeapp.model.data.AppState
-import com.geekbrains.cleancodeapp.model.data.DataModel
+import com.geekbrains.model.data.AppState
+import com.geekbrains.model.data.DataModel
 import com.geekbrains.cleancodeapp.utils.convertMeaningsToString
-import com.geekbrains.cleancodeapp.utils.network.isOnline
-import com.geekbrains.cleancodeapp.view.base.BaseActivity
 import com.geekbrains.cleancodeapp.view.descreptionscreen.DescriptionActivity
-import com.geekbrains.cleancodeapp.view.history.HistoryActivity
+import com.geekbrains.history.view.history.HistoryActivity
 import com.geekbrains.cleancodeapp.view.main.adapter.MainAdapter
+import com.geekbrains.core.BaseActivity
+import com.geekbrains.utils.network.isOnline
 import org.koin.android.viewmodel.ext.android.viewModel
 
 
@@ -40,7 +40,7 @@ class MainActivity : BaseActivity<AppState, MainInteractor>() {
                         this@MainActivity,
                         data.text!!,
                         convertMeaningsToString(data.meanings!!),
-                        data.meanings[0].imageUrl
+                        data.meanings!![0].imageUrl
                     )
                 )
             }

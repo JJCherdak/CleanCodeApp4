@@ -3,10 +3,9 @@ package com.geekbrains.cleancodeapp.view.main.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.geekbrains.cleancodeapp.R
-import com.geekbrains.cleancodeapp.model.data.DataModel
+import com.geekbrains.model.data.DataModel
 import com.geekbrains.cleancodeapp.utils.convertMeaningsToString
 import kotlinx.android.synthetic.main.activity_main_recyclerview.view.*
 
