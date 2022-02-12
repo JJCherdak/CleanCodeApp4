@@ -1,6 +1,7 @@
 package com.geekbrains.cleancodeapp.di
 
 import androidx.room.Room
+import com.geekbrains.cleancodeapp.view.main.MainActivity
 import com.geekbrains.model.data.DataModel
 import com.geekbrains.model.room.HistoryDataBase
 import com.geekbrains.history.view.history.HistoryViewModel
@@ -8,6 +9,8 @@ import com.geekbrains.history.view.history.HystoryInteractor
 import com.geekbrains.cleancodeapp.view.main.MainInteractor
 import com.geekbrains.cleancodeapp.view.main.MainViewModel
 import com.geekbrains.repository.*
+import org.koin.android.viewmodel.dsl.viewModel
+import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
 val application = module {
@@ -21,8 +24,10 @@ val application = module {
 }
 
 val mainScreen = module {
-    factory { MainViewModel(get()) }
-    factory { MainInteractor(get(), get()) }
+scope(named<MainActivity>()){
+    scoped{MainInteractor(get(), get())}
+    viewModel{MainViewModel(get())}
+}
 }
 
 val historyScreen = module {
