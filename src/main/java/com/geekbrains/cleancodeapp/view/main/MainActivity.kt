@@ -16,6 +16,7 @@ import com.geekbrains.history.view.history.HistoryActivity
 import com.geekbrains.cleancodeapp.view.main.adapter.MainAdapter
 import com.geekbrains.core.BaseActivity
 import com.geekbrains.utils.network.isOnline
+import org.koin.android.scope.currentScope
 import org.koin.android.viewmodel.ext.android.viewModel
 
 
@@ -89,7 +90,7 @@ class MainActivity : BaseActivity<AppState, MainInteractor>() {
         if (binding.mainActivityRecyclerview.adapter != null) {
             throw IllegalStateException("The ViewModel should be initialised first")
         }
-        val viewModel: MainViewModel by viewModel()
+        val viewModel: MainViewModel by currentScope.inject()
         model = viewModel
         model.subscribe().observe(this@MainActivity, Observer<AppState> { renderData(it) })
     }
