@@ -8,6 +8,7 @@ import com.geekbrains.history.view.history.HistoryViewModel
 import com.geekbrains.history.view.history.HystoryInteractor
 import com.geekbrains.cleancodeapp.view.main.MainInteractor
 import com.geekbrains.cleancodeapp.view.main.MainViewModel
+import com.geekbrains.history.view.history.HistoryActivity
 import com.geekbrains.repository.*
 import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.core.qualifier.named
@@ -31,6 +32,8 @@ scope(named<MainActivity>()){
 }
 
 val historyScreen = module {
-    factory { HistoryViewModel(get()) }
-    factory { HystoryInteractor(get(), get()) }
+  scope(named<HistoryActivity>()){
+      scoped{HystoryInteractor(get(),get())}
+        viewModel{HistoryViewModel(get())}
+}
 }
