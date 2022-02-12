@@ -6,6 +6,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.RecyclerView
 import com.geekbrains.cleancodeapp.R
 import com.geekbrains.cleancodeapp.databinding.ActivityMainBinding
 import com.geekbrains.model.data.AppState
@@ -16,6 +17,8 @@ import com.geekbrains.history.view.history.HistoryActivity
 import com.geekbrains.cleancodeapp.view.main.adapter.MainAdapter
 import com.geekbrains.core.BaseActivity
 import com.geekbrains.utils.network.isOnline
+import com.geekbrains.utils.Ui.viewById
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import org.koin.android.scope.currentScope
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -27,6 +30,10 @@ class MainActivity : BaseActivity<AppState, MainInteractor>() {
     private lateinit var binding: ActivityMainBinding
     override lateinit var model: MainViewModel
     private val adapter: MainAdapter by lazy { MainAdapter(onListItemClickListener) }
+    private val mainActivityRecyclerview by viewById<RecyclerView>(R.id.main_activity_recyclerview)
+    private val searchFAB by viewById<FloatingActionButton>(R.id.search_fab)
+
+
     private val fabClickListener: View.OnClickListener =
         View.OnClickListener {
             val searchDialogFragment = SearchDialogFragment.newInstance()
