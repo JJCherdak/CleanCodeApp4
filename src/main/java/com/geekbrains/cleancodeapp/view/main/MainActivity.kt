@@ -5,22 +5,19 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
 import com.geekbrains.cleancodeapp.R
 import com.geekbrains.cleancodeapp.databinding.ActivityMainBinding
 import com.geekbrains.model.data.AppState
-import com.geekbrains.model.data.DataModel
 import com.geekbrains.cleancodeapp.utils.convertMeaningsToString
 import com.geekbrains.cleancodeapp.view.descreptionscreen.DescriptionActivity
 import com.geekbrains.history.view.history.HistoryActivity
 import com.geekbrains.cleancodeapp.view.main.adapter.MainAdapter
 import com.geekbrains.core.BaseActivity
-import com.geekbrains.utils.network.isOnline
+import com.geekbrains.model.data.userdata.DataModel
 import com.geekbrains.utils.Ui.viewById
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import org.koin.android.scope.currentScope
-import org.koin.android.viewmodel.ext.android.viewModel
 
 
 private const val BOTTOM_SHEET_FRAGMENT_DIALOG_TAG = "74a54328-5d62-46bf-ab6b-cbf5fgt0-092395"
@@ -32,7 +29,6 @@ class MainActivity : BaseActivity<AppState, MainInteractor>() {
     private val adapter: MainAdapter by lazy { MainAdapter(onListItemClickListener) }
     private val mainActivityRecyclerview by viewById<RecyclerView>(R.id.main_activity_recyclerview)
     private val searchFAB by viewById<FloatingActionButton>(R.id.search_fab)
-
 
     private val fabClickListener: View.OnClickListener =
         View.OnClickListener {
@@ -46,9 +42,9 @@ class MainActivity : BaseActivity<AppState, MainInteractor>() {
                 startActivity(
                     DescriptionActivity.getIntent(
                         this@MainActivity,
-                        data.text!!,
-                        convertMeaningsToString(data.meanings!!),
-                        data.meanings!![0].imageUrl
+                        data.text,
+                        convertMeaningsToString(data.meanings),
+                        data.meanings[0].imageUrl
                     )
                 )
             }
@@ -56,7 +52,6 @@ class MainActivity : BaseActivity<AppState, MainInteractor>() {
     private val onSearchClickListener: SearchDialogFragment.OnSearchClickListener =
         object : SearchDialogFragment.OnSearchClickListener {
             override fun onClick(searchWord: String) {
-                isNetworkAvailable = isOnline(applicationContext)
                 if (isNetworkAvailable) {
                     model.getData(searchWord, isNetworkAvailable)
                 } else {
@@ -69,9 +64,9 @@ class MainActivity : BaseActivity<AppState, MainInteractor>() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        initViewModel()
-        initViews()
 
+        iniViewModel()
+        initViews()
     }
 
     override fun setDataToAdapter(data: List<DataModel>) {
@@ -93,20 +88,18 @@ class MainActivity : BaseActivity<AppState, MainInteractor>() {
         }
     }
 
-    private fun initViewModel() {
-        if (binding.mainActivityRecyclerview.adapter != null) {
+    private fun iniViewModel() {
+        if (mainActivityRecyclerview.adapter != null) {
             throw IllegalStateException("The ViewModel should be initialised first")
         }
         val viewModel: MainViewModel by currentScope.inject()
+
         model = viewModel
-        model.subscribe().observe(this@MainActivity, Observer<AppState> { renderData(it) })
+        model.subscribe().observe(this@MainActivity, { renderData(it) })
     }
 
     private fun initViews() {
-        binding.searchFab.setOnClickListener(fabClickListener)
-        binding.mainActivityRecyclerview.adapter = adapter
+        searchFAB.setOnClickListener(fabClickListener)
+        mainActivityRecyclerview.adapter = adapter
     }
-
-
-
 }
