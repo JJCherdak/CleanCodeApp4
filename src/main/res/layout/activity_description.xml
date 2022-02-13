@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"
         android:text="Description"/>
 
-        <com.geekbrains.cleancodeapp.utils.Ui.EquilateralImageView
+        <com.geekbrains.utils.Ui.EquilateralImageView
             android:id="@+id/description_imageView"
             android:layout_width="match_parent"
             android:layout_height="396dp"

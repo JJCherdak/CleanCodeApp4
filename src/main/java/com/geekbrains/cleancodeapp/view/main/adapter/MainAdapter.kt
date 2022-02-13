@@ -6,8 +6,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.geekbrains.cleancodeapp.R
-import com.geekbrains.cleancodeapp.model.data.DataModel
+import com.geekbrains.model.data.dto.SearchResultDto
 import com.geekbrains.cleancodeapp.utils.convertMeaningsToString
+import com.geekbrains.model.data.userdata.DataModel
 import kotlinx.android.synthetic.main.activity_main_recyclerview.view.*
 
 class MainAdapter(
@@ -17,7 +18,7 @@ class MainAdapter(
     private var data: List<DataModel> = arrayListOf()
 
     fun setData(data: List<DataModel>) {
-        this.data = data
+        this.data = data as ArrayList<DataModel>
         notifyDataSetChanged()
     }
 
@@ -40,8 +41,9 @@ class MainAdapter(
 
         fun bind(data: DataModel) {
             if (layoutPosition != RecyclerView.NO_POSITION) {
-                itemView.header_textview_recycler_item.text = data.text
-                itemView.description_textview_recycler_item.text = convertMeaningsToString(data.meanings!!)
+                itemView.findViewById<TextView>(R.id.header_textview_recycler_item).text = data.text
+                itemView.findViewById<TextView>(R.id.description_textview_recycler_item).text =
+                    convertMeaningsToString(data.meanings)
                 itemView.setOnClickListener { openInNewWindow(data) }
             }
         }

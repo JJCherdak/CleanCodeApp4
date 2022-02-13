@@ -7,11 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.TextView
 import com.geekbrains.cleancodeapp.R
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.geekbrains.cleancodeapp.databinding.SearchDialogFragmentBinding
-import com.geekbrains.cleancodeapp.utils.getEmptyString
+import com.geekbrains.utils.getEmptyString
 import com.google.android.material.textfield.TextInputEditText
 import kotlinx.android.synthetic.main.search_dialog_fragment.*
 
