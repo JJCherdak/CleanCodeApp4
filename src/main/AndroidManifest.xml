@@ -15,6 +15,7 @@
         android:name=".application.CleanCodeApp">
         <activity android:name=".view.main.MainActivity"
             android:exported="true"
+
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -25,9 +26,7 @@
         <activity
             android:name=".view.descreptionscreen.DescriptionActivity"
             android:screenOrientation="portrait"/>
-        <activity
-            android:name=".view.history.HistoryActivity"
-            android:screenOrientation="portrait"/>
+
     </application>
 
 </manifest>

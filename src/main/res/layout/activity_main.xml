@@ -78,4 +78,6 @@
         android:text="@string/reload_button"
         />
   </LinearLayout>
+
+  <include layout="@layout/loading_layout"/>
 </FrameLayout>
